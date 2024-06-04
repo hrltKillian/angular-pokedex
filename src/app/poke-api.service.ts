@@ -27,6 +27,12 @@ export class PokeApiService {
     return this.firstGenPokemon[id - 1];
   }
 
+  getPokemonByName(name: string) {
+    return this.firstGenPokemon.find(
+      (pokemon) => pokemon.name.toLowerCase() === name.toLowerCase()
+    );
+  }
+
   getPokemonsByType(type: string) {
     return this.firstGenPokemon.filter((pokemon) =>
       pokemon.types.some((t:any) => t.type.name === type)
