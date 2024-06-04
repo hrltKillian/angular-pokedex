@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +29,12 @@ export class PokeApiService {
   getPokemonByName(name: string) {
     return this.firstGenPokemon.find(
       (pokemon) => pokemon.name.toLowerCase() === name.toLowerCase()
+    );
+  }
+
+  getPokemonsByFirstLetters(letter: string) {
+    return this.firstGenPokemon.filter((pokemon) =>
+      pokemon.name.toLowerCase().startsWith(letter.toLowerCase())
     );
   }
 
