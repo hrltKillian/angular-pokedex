@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
+
+* {
+  font-family: 'Press Start 2P', cursive;
+}
+
 table {
   border-collapse: collapse;
   border: 2px solid rgb(140 140 140);

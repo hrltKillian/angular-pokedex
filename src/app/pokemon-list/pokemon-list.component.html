@@ -1,17 +1,32 @@
 <div>
   @for (pokemon of firstGenPokemon; track pokemon.id) {
-    <h2>#{{ pokemon.id }}</h2>
-    <h2>{{ pokemon.name }}</h2>
+      @if (pokemon.types.length > 1) {
+        <div class="{{ pokemon.types[1].type.name + pokemon.types[0].type.name }} pokemonCard">
+      <h2 class="{{ pokemon.types[0].type.name + pokemon.types[1].type.name }} id">#{{ pokemon.id }}</h2>
+      <h2 class="{{ pokemon.types[0].type.name + pokemon.types[1].type.name }} shadowOnBackground textRoundCorner">{{ pokemon.name }}</h2>
+      <div>
+        <!--<img [src]="pokemon.sprites.other['showdown'].front_default" [alt]="pokemon.name" />-->
+        <img [src]="pokemon.sprites.other['official-artwork'].front_default" [alt]="pokemon.name" />
+      </div>
+      <div>
+        <h3 class="{{ pokemon.types[0].type.name }} type">{{ pokemon.types[0].type.name }}</h3>
+        <h3 class="{{ pokemon.types[1].type.name }} type">{{ pokemon.types[1].type.name }}</h3>
+      </div>
+      <button class="detailButton" (click)="goToPokemonDetails(pokemon.id)">More Details</button>
+    </div>
+    } @else {
+      <div class="{{ pokemon.types[0].type.name }} pokemonCard">
+    <h2 class="{{ pokemon.types[0].type.name }} id">#{{ pokemon.id }}</h2>
+    <h2 class="{{ pokemon.types[0].type.name }} shadowOnBackground textRoundCorner">{{ pokemon.name }}</h2>
     <div>
       <!--<img [src]="pokemon.sprites.other['showdown'].front_default" [alt]="pokemon.name" />-->
       <img [src]="pokemon.sprites.other['official-artwork'].front_default" [alt]="pokemon.name" />
     </div>
     <div>
-      <h3>{{ pokemon.types[0].type.name }}</h3>
-      @if (pokemon.types.length > 1) {
-        <h3>{{ pokemon.types[1].type.name }}</h3>
-      }
+      <h3 class="{{ pokemon.types[0].type.name }} type">{{ pokemon.types[0].type.name }}</h3>
     </div>
-    <button (click)="goToPokemonDetails(pokemon.id)">More Details</button>
+    <button class="detailButton" (click)="goToPokemonDetails(pokemon.id)">More Details</button>
+  </div>
+  }
   }
 </div>
