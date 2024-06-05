@@ -1,21 +1,76 @@
 import { Injectable } from '@angular/core';
+import { delay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokeApiService {
   url = 'https://pokeapi.co/api/v2/pokemon/';
+  urlType = 'https://pokeapi.co/api/v2/type/';
   firstGenPokemon: any[] = [];
+  typesRelation: any[] = [];
+  typesName: any[] = [];
 
-  ngOnInit() {
+  constructor() {
+    this.loadFirstGenPokemon();
+    this.sortByIdFirstGenPokemon();
+    this.loadTypesName();
+    this.loadTypesRelation();
+    setTimeout(() => {
+      this.typesName = this.typesName.slice(0, 18);
+      console.log('filtered types name');
+      setTimeout(() => {
+        console.log(this.firstGenPokemon);
+        console.log(this.typesName);
+        console.log(this.typesRelation);
+      }, 500);
+    }, 1000);
+  }
+
+  loadFirstGenPokemon() {
     this.firstGenPokemon = [];
     for (let i = 1; i <= 151; i++) {
-      fetch(this.url + `${i}`)
+      fetch(this.url + i)
         .then((response) => response.json())
         .then((data) => {
           this.firstGenPokemon.push(data);
         });
     }
+    console.log('first gen loaded');
+  }
+
+  loadTypesName() {
+    this.typesName = [];
+    fetch(this.urlType)
+      .then((response) => response.json())
+      .then((data) => {
+        this.typesName = data.results.map((type: any) => type.name);
+      });
+    console.log('types loaded');
+  }
+
+  loadTypesRelation() {
+    this.typesRelation = [];
+    for (let i = 1; i <= 18; i++) {
+      fetch(this.urlType + i)
+        .then((response) => response.json())
+        .then((data) => {
+          this.typesRelation.push(data.damage_relations);
+        });
+    }
+    console.log('relations loaded');
+  }
+
+  getTypesRelation() {
+    return this.typesRelation;
+  }
+
+  getTypesName() {
+    return this.typesName;
+  }
+
+  sortByIdFirstGenPokemon() {
+    this.firstGenPokemon.sort((a, b) => a.id - b.id);
   }
 
   getFirstGenPokemon() {
@@ -40,31 +95,31 @@ export class PokeApiService {
 
   getPokemonsByType(type: string) {
     return this.firstGenPokemon.filter((pokemon) =>
-      pokemon.types.some((t:any) => t.type.name === type)
+      pokemon.types.some((t: any) => t.type.name === type)
     );
   }
 
-  getPokemonHeightMoreThan(height: number) {
+  getPokemonHeightMoreThan(heightInMeter: number) {
     return this.firstGenPokemon.filter(
-      (pokemon) => pokemon.height > height
+      (pokemon) => pokemon.height / 10 > heightInMeter
     );
   }
 
-  getPokemonHeightLessThan(height: number) {
+  getPokemonHeightLessThan(heightInMeter: number) {
     return this.firstGenPokemon.filter(
-      (pokemon) => pokemon.height < height
+      (pokemon) => pokemon.height / 10 < heightInMeter
     );
   }
 
-  getPokemonWeightLessThan(weight: number) {
+  getPokemonWeightLessThan(weightInKilo: number) {
     return this.firstGenPokemon.filter(
-      (pokemon) => pokemon.weight < weight
+      (pokemon) => pokemon.weight / 10 < weightInKilo
     );
   }
 
-  getPokemonWeightMoreThan(weight: number) {
+  getPokemonWeightMoreThan(weightInKilo: number) {
     return this.firstGenPokemon.filter(
-      (pokemon) => pokemon.weight > weight
+      (pokemon) => pokemon.weight / 10 > weightInKilo
     );
   }
 }
