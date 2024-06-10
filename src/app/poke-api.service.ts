@@ -13,10 +13,10 @@ export class PokeApiService {
 
   constructor() {
     this.loadFirstGenPokemon();
-    this.sortByIdFirstGenPokemon();
     this.loadTypesName();
     this.loadTypesRelation();
     setTimeout(() => {
+      this.sortByIdFirstGenPokemon();
       this.typesName = this.typesName.slice(0, 18);
       console.log('filtered types name');
       setTimeout(() => {

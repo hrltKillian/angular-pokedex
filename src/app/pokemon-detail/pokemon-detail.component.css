@@ -8,8 +8,13 @@ table {
   border-collapse: collapse;
   border: 2px solid rgb(140 140 140);
   font-family: sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.4rem;
   letter-spacing: 1px;
+}
+
+.typeTable {
+  display: flex;
+  padding: 50px;
 }
 
 caption {
@@ -29,4 +34,79 @@ td {
   width: 150px;
 }
 
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.pokedexButton {
+  display: inline-block;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  background-color: #F6F6F6;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+.pokedexButton:hover {
+  background-color: #F6F183;
+  border: 2px solid #CDC643;
+}
+
+.idAndSprites {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.id {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.sprites {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.bothSprites {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.maleSprites {
+  background-color: #77D0FF;
+  border: 5px solid #4F8BAC;
+  border-radius: 40px;
+}
+
+.femaleSprites {
+  background-color: #FF77FF;
+  border: 5px solid #8B4F8B;
+  border-radius: 40px;
+}
+
+.nonBinarySprites {
+  background-image: linear-gradient(135deg, #77D0FF, #FF77FF);
+  border: 5px solid #D7D7D7;
+  border-radius: 40px;
+
+}
+
+.genderSprites {
+  padding: 20px;
+  width: 400px;
+}
