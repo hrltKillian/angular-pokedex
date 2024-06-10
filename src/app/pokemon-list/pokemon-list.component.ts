@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PokeApiService } from '../poke-api.service';
 import { PokemonDetailComponent } from '../pokemon-detail/pokemon-detail.component';
+import { ColorDirective } from '../color.directive';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [PokemonDetailComponent],
+  imports: [PokemonDetailComponent, ColorDirective],
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.css',
 })

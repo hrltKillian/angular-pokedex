@@ -16,8 +16,8 @@ export class PokeApiService {
     this.loadTypesName();
     this.loadTypesRelation();
     setTimeout(() => {
-      this.sortByIdFirstGenPokemon();
       this.typesName = this.typesName.slice(0, 18);
+      this.sortByIdFirstGenPokemon();
       console.log('filtered types name');
       setTimeout(() => {
         console.log(this.firstGenPokemon);

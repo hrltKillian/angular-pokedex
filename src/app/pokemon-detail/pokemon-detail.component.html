@@ -3,43 +3,50 @@
 </div>
 <div>
   <div class="idAndSprites">
-    <div class="id">
-      <h2>{{ pokemon.name }}</h2>
-      <h2>#{{ pokemon.id }}</h2>
-    </div>
-    <div>
-      @if (pokemon.sprites.other.showdown.back_female !== null) {
-        <div class="bothSprites">
-          <div class="genderSprites maleSprites">
-            <h2>Male Sprites</h2>
-            <div class="sprites">
-              <img [src]="pokemon.sprites.other.showdown.front_default" [alt]="pokemon.name" />
-              <img [src]="pokemon.sprites.other.showdown.front_shiny" [alt]="pokemon.name" />
-              <img [src]="pokemon.sprites.other.showdown.back_default" [alt]="pokemon.name" />
-              <img [src]="pokemon.sprites.other.showdown.back_shiny" [alt]="pokemon.name" />
-            </div>
-          </div>
-          <div class="genderSprites femaleSprites">
-            <h2>Female Sprites</h2>
-            <div class="sprites">
-              <img [src]="pokemon.sprites.other.showdown.front_female" [alt]="pokemon.name" />
-              <img [src]="pokemon.sprites.other.showdown.front_shiny_female" [alt]="pokemon.name" />
-              <img [src]="pokemon.sprites.other.showdown.back_female" [alt]="pokemon.name" />
-              <img [src]="pokemon.sprites.other.showdown.back_shiny_female" [alt]="pokemon.name" />
-            </div>
-          </div>
-        </div>
-      } @else {
-      <div class="genderSprites nonBinarySprites">
-        <h2>Sprites</h2>
-        <div class="sprites">
-          <img [src]="pokemon.sprites.other.showdown.front_default" [alt]="pokemon.name" />
-          <img [src]="pokemon.sprites.other.showdown.front_shiny" [alt]="pokemon.name" />
-          <img [src]="pokemon.sprites.other.showdown.back_default" [alt]="pokemon.name" />
-          <img [src]="pokemon.sprites.other.showdown.back_shiny" [alt]="pokemon.name" />
-        </div>
+    <div class="idDiv">
+      <div>
+        @if (pokemon.types.length > 1) {
+          <h2 class="id" [appColor]="pokemon.types[0].type.name + pokemon.types[1].type.name">#{{ pokemon.id }}</h2>
+          <h2 class="shadowOnBackground textRoundCorner" [appColor]="pokemon.types[0].type.name + pokemon.types[1].type.name">{{ pokemon.name }}</h2>
+        } @else {
+          <h2 class="id" [appColor]="pokemon.types[0].type.name">#{{ pokemon.id }}</h2>
+          <h2 class="shadowOnBackground textRoundCorner" [appColor]="pokemon.types[0].type.name">{{ pokemon.name }}</h2>
+        }
       </div>
-      }
+      <div>
+        @if (pokemon.sprites.other.showdown.back_female !== null) {
+          <div class="bothSprites">
+            <div class="genderSprites maleSprites">
+              <h2>Male Sprites</h2>
+              <div class="sprites">
+                <img [src]="pokemon.sprites.other.showdown.front_default" [alt]="pokemon.name" />
+                <img [src]="pokemon.sprites.other.showdown.front_shiny" [alt]="pokemon.name" />
+                <img [src]="pokemon.sprites.other.showdown.back_default" [alt]="pokemon.name" />
+                <img [src]="pokemon.sprites.other.showdown.back_shiny" [alt]="pokemon.name" />
+              </div>
+            </div>
+            <div class="genderSprites femaleSprites">
+              <h2>Female Sprites</h2>
+              <div class="sprites">
+                <img [src]="pokemon.sprites.other.showdown.front_female" [alt]="pokemon.name" />
+                <img [src]="pokemon.sprites.other.showdown.front_shiny_female" [alt]="pokemon.name" />
+                <img [src]="pokemon.sprites.other.showdown.back_female" [alt]="pokemon.name" />
+                <img [src]="femaleShinySprite" [alt]="pokemon.name" />
+              </div>
+            </div>
+          </div>
+        } @else {
+        <div class="genderSprites nonBinarySprites">
+          <h2>Sprites</h2>
+          <div class="sprites">
+            <img [src]="pokemon.sprites.other.showdown.front_default" [alt]="pokemon.name" />
+            <img [src]="pokemon.sprites.other.showdown.front_shiny" [alt]="pokemon.name" />
+            <img [src]="pokemon.sprites.other.showdown.back_default" [alt]="pokemon.name" />
+            <img [src]="pokemon.sprites.other.showdown.back_shiny" [alt]="pokemon.name" />
+          </div>
+        </div>
+        }
+      </div>
     </div>
   </div>
   <div>
@@ -72,16 +79,16 @@
     <div>
       <h2>Types</h2>
     </div>
-    <div>
-      <h2>{{ pokemon.types[0].type.name }}</h2>
-      <h2>{{ pokemon.types[1].type.name }}</h2>
+    <div class="typesDiv">
+      <h2 class="type" [appColor]="pokemon.types[0].type.name">{{ pokemon.types[0].type.name }}</h2>
+      <h2 class="type" [appColor]="pokemon.types[1].type.name">{{ pokemon.types[1].type.name }}</h2>
     </div>
     } @else {
     <div>
       <h2>Type</h2>
     </div>
-    <div>
-      <h2>{{ pokemon.types[0].type.name }}</h2>
+    <div class="typesDiv">
+      <h2 class="type" [appColor]="pokemon.types[0].type.name">{{ pokemon.types[0].type.name }}</h2>
     </div>
     }
   </div>

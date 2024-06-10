@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokeApiService } from '../poke-api.service';
+import { ColorDirective } from '../color.directive';
 
 @Component({
   selector: 'app-pokemon-detail',
   standalone: true,
-  imports: [],
+  imports: [ColorDirective],
   templateUrl: './pokemon-detail.component.html',
   styleUrl: './pokemon-detail.component.css',
 })
@@ -14,6 +15,7 @@ export class PokemonDetailComponent {
   typesName: any[] = [];
   typesRelation: any[] = [];
   showFullTypeTable = false;
+  femaleShinySprite : string = '';
   constructor(
     private route: ActivatedRoute,
     private pokeApiService: PokeApiService,
@@ -36,6 +38,7 @@ export class PokemonDetailComponent {
         }
         this.typesRelation = this.pokeApiService.getTypesRelation();
       }
+      this.femaleShinySprite = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/female/'+ id +'.gif';
       console.log(this.typesRelation);
       console.log(this.typesName);
     }, 500);
