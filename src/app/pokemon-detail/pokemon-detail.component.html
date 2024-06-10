@@ -57,7 +57,7 @@
       <thead>
         <tr>
           @for (stat of pokemon.stats; track stat.stat.name) {
-          <th scope="col">
+          <th scope="col" [appTableColor]="stat.stat.name">
             {{ stat.stat.name }}
           </th>
           }
@@ -99,13 +99,15 @@
       </caption>
       <thead>
         <tr>
-          <th scope="col" colspan="20">Defense</th>
+          <th></th>
+          <th></th>
+          <th class="defense" scope="col" colspan="20">Defense</th>
         </tr>
         <tr>
           <th></th>
           <th></th>
           @for (typeName of typesName; track typeName) {
-          <th scope="col">
+          <th scope="col" [appColor]="typeName">
             {{ typeName }}
           </th>
           }
@@ -113,11 +115,11 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row" rowspan="20">Attack</th>
+          <th class="attack" scope="row" rowspan="20">Attack</th>
         </tr>
         @for (typeName of typesName; track $index) {
         <tr>
-          <th scope="row">
+          <th scope="row" [appColor]="typeName">
             {{ typeName }}
           </th>
           @for (typeNameDefense of typesName; track typeNameDefense) {
@@ -125,19 +127,19 @@
             @for (typeDefense of typesRelation[$index].double_damage_from; track typeDefense.name)
             {
             @if (typeDefense.name === typeName) {
-            <span>2</span>
+            2
             }
             }
             @for (typeDefense of typesRelation[$index].half_damage_from; track typeDefense.name)
             {
             @if (typeDefense.name === typeName) {
-            <span>0.5</span>
+            0.5
             }
             }
             @for (typeDefense of typesRelation[$index].no_damage_from; track typeDefense.name)
             {
             @if (typeDefense.name === typeName) {
-            <span>0</span>
+            0
             }
             }
           </td>

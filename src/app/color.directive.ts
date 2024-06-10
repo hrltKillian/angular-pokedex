@@ -12,7 +12,7 @@ export class ColorDirective implements OnInit {
     this.setColor(this.appColor);
   }
 
-  private setColor(type: string) {
+  private setColor(type: string) : void {
     let colorType1 = '';
     let colorType2 = '';
     let shadow = false;

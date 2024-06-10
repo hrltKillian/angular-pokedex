@@ -27,8 +27,12 @@ caption {
   font-weight: bold;
 }
 
-thead {
-  background-color: rgb(228 240 245);
+.attack {
+  background-color: #FF6F6F;
+}
+
+.defense {
+  background-color: #6F6FFF;
 }
 
 th,
@@ -143,5 +147,4 @@ div {
 
 .genderSprites {
   padding: 20px;
-  width: 400px;
 }
